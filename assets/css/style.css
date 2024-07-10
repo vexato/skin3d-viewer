@@ -1,0 +1,30 @@
+@font-face {
+	font-family: 'Minecraft';
+	src: url('../font/minecraft.woff2') format('woff2');
+}
+@media (max-width: 768px) {
+    #skin_container {
+        margin-bottom: 20px;
+    }
+}
+
+#skin_container {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+    padding: 30px;
+}
+
+.btn {
+    margin-top: 10px;
+}

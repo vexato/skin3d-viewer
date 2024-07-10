@@ -1,0 +1,19 @@
+{
+    "id": "skin3d",
+    "name": "skin3d viewer",
+    "description": "regarder votre skin en 3D , compatible skin-API",
+    "version": "0.0.1",
+    "url": "https://azuriom.com",
+    "authors": [
+        "vexato"
+    ],
+    "azuriom_api": "1.1.0",
+    "providers": [
+        "\\Azuriom\\Plugin\\Skin3D\\Providers\\Skin3DServiceProvider",
+        "\\Azuriom\\Plugin\\Skin3D\\Providers\\RouteServiceProvider"
+    ],
+    "dependencies": {
+    "skin-api": "^1.0.4"
+    
+}
+}
