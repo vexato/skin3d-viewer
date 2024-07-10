@@ -15,9 +15,9 @@
         <div class="col-md-6 text-center align-self-center">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="mb-4">Bienvenue {{ Auth::user()->name }}, ici tu peux voir ton skin en 3D</h3>
-                    <a href="{{ env('APP_URL') }}/skin-api" class="btn btn-primary">Modifier mon skin</a>
-                    <button id="pauseButton" class="btn btn-secondary">Pause Animation</button>
+                    <h3 class="mb-4">{{ trans('skin3d::messages.welcome_message', ['name' => Auth::user()->name]) }}</h3>
+                    <a href="{{ env('APP_URL') }}/skin-api" class="btn btn-primary">{{ trans('skin3d::messages.change_skin') }}</a>
+                    <button id="pauseButton" class="btn btn-secondary">{{ trans('skin3d::messages.pause_animation') }}</button>
                 </div>
             </div>
         </div>
@@ -35,14 +35,14 @@
     skinViewer.zoom = 0.5;
     skinViewer.animation = new skinview3d.WalkingAnimation();
     skinViewer.fov = 70;
-    skinViewer.loadCape();
+   
     
     skinViewer.nameTag = "{{ Auth::user()->name }}";
 
     
     document.getElementById("pauseButton").addEventListener("click", function() {
         skinViewer.animation.paused = !skinViewer.animation.paused;
-        this.textContent = skinViewer.animation.paused ? "Reprendre Animation" : "Pause Animation";
+        this.textContent = skinViewer.animation.paused ? "{{ trans('plugin::messages.resume_animation') }}" : "{{ trans('plugin::messages.pause_animation') }}";
     });
 </script>
 
