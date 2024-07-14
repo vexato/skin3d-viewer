@@ -1,8 +1,8 @@
 {
     "id": "skin3d",
     "name": "skin3d viewer",
-    "description": "regarder votre skin en 3D , compatible skin-API",
-    "version": "0.0.1",
+    "description": "view your skin in 3D, skin-API compatible",
+    "version": "0.0.2",
     "url": "https://market.azuriom.com/resources/148",
     "authors": [
         "vexato"

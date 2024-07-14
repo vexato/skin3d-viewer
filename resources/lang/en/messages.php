@@ -2,6 +2,9 @@
 
 return [
     'welcome_message' => 'Welcome :name, here you can view your 3D skin',
+    'noauth' => "you are not authenticated, please login to see your skin",
+    'login' => 'login to your account',
+    'register' => 'create a new account',
     'change_skin' => 'Change my skin',
     'pause_animation' => 'Pause Animation',
     'resume_animation' => 'Resume Animation',
