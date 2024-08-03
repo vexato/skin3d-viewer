@@ -9,5 +9,7 @@ return [
     'pause_animation' => 'Pause Animation',
     'resume_animation' => 'Reprendre Animation',
     'skin_load_error' => 'Échec du chargement du skin. Veuillez réessayer plus tard.',
-    
+    'title' => 'Visualiseur skin3d',
+    'how_to_use' => 'Comment utiliser?',
+    'instruction' => 'Vous devez aller à :',
 ];

@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\Skin3dviewer\Controllers\Skin3dviewerHomeController;
+use Azuriom\Plugin\Skin3dviewer\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,5 +15,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Skin3dviewerHomeController::class, 'index'])->name('index');
-
+Route::get('/', [AdminController::class, 'index'])->name('index');

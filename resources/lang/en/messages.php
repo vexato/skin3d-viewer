@@ -9,5 +9,7 @@ return [
     'pause_animation' => 'Pause Animation',
     'resume_animation' => 'Resume Animation',
     'skin_load_error' => 'Failed to load skin. Please try again later.',
-    
+    'title' => 'skin3d viewer',
+    'how_to_use' => 'How to Use?',
+    'instruction' => 'You must go to:',
 ];

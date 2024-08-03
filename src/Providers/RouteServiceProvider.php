@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\Skin3D\Providers;
+namespace Azuriom\Plugin\Skin3dviewer\Providers;
 
 use Azuriom\Extensions\Plugin\BaseRouteServiceProvider;
 use Illuminate\Support\Facades\Route;
@@ -17,5 +17,9 @@ class RouteServiceProvider extends BaseRouteServiceProvider
             ->name($this->plugin->id.'.')
             ->group(plugin_path($this->plugin->id.'/routes/web.php'));
 
+        Route::middleware('admin-access')
+            ->prefix('admin/'.$this->plugin->id)
+            ->name($this->plugin->id.'.admin.')
+            ->group(plugin_path($this->plugin->id.'/routes/admin.php'));
     }
 }
