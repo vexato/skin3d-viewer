@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\Skin3dviewer\Controllers\Admin;
+namespace Azuriom\Plugin\Skin3d\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 
@@ -11,6 +11,6 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('skin3dviewer::admin.index');
+        return view('skin3d::admin.index');
     }
 }

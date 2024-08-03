@@ -1,16 +1,16 @@
 <?php
 
-namespace Azuriom\Plugin\Skin3dviewer\Providers;
+namespace Azuriom\Plugin\Skin3d\Providers;
 
 use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 
-class Skin3dviewerServiceProvider extends BasePluginServiceProvider
+class Skin3dServiceProvider extends BasePluginServiceProvider
 {
     /**
      * The plugin's global HTTP middleware stack.
      */
     protected array $middleware = [
-        // \Azuriom\Plugin\Skin3dviewer\Middleware\ExampleMiddleware::class,
+        // \Azuriom\Plugin\Skin3d\Middleware\ExampleMiddleware::class,
     ];
 
     /**
@@ -22,7 +22,7 @@ class Skin3dviewerServiceProvider extends BasePluginServiceProvider
      * The plugin's route middleware.
      */
     protected array $routeMiddleware = [
-        // 'example' => \Azuriom\Plugin\Skin3dviewer\Middleware\ExampleRouteMiddleware::class,
+        // 'example' => \Azuriom\Plugin\Skin3d\Middleware\ExampleRouteMiddleware::class,
     ];
 
     /**
@@ -74,7 +74,7 @@ class Skin3dviewerServiceProvider extends BasePluginServiceProvider
     protected function routeDescriptions(): array
     {
         return [
-            'skin3dviewer.index' => "Skin3d viewer",
+            'skin3d.index' => "Skin3d viewer",
         ];
     }
 
@@ -86,10 +86,10 @@ class Skin3dviewerServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation(): array
     {
         return [
-            'skin3dviewer' => [
+            'skin3d viewer' => [
                 'name' => 'skin3Dviewer', // Traduction du nom de l'onglet
                 'icon' => 'bi bi-badge-3d', // Icône Bootstrap Icons
-                'route' => 'skin3dviewer.admin.index', // Route de la page
+                'route' => 'skin3d.admin.index', // Route de la page
             ],
         ];
     }
@@ -103,7 +103,7 @@ class Skin3dviewerServiceProvider extends BasePluginServiceProvider
     {
         return [
             'skin3d' => [
-                'route' => 'skin3dviewer.index',
+                'route' => 'skin3d.index',
                 'icon' => 'bi bi-badge-3d',
                 'name' => 'skin3D viewer',
             ],

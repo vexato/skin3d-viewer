@@ -1,6 +1,6 @@
 <?php
 
-namespace Azuriom\Plugin\Skin3dviewer\Providers;
+namespace Azuriom\Plugin\Skin3d\Providers;
 
 use Azuriom\Extensions\Plugin\BaseRouteServiceProvider;
 use Illuminate\Support\Facades\Route;

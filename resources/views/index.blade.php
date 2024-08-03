@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'skin3dviewer')
+@section('title', 'skin3d')
 
 @section('content')
 @push('styles')
-    <link href="{{ plugin_asset('skin3dviewer', 'css/style.css') }}" rel="stylesheet"/>
+    <link href="{{ plugin_asset('skin3d', 'css/style.css') }}" rel="stylesheet"/>
 @endpush
 
 <div class="container">
@@ -16,15 +16,15 @@
             <div class="card">
                 <div class="card-body">
                     @auth
-                    <h3 class="mb-4">{{ trans('skin3dviewer::messages.welcome_message', ['name' => Auth::user()->name]) }}</h3>
-                    <a href="{{ url('skin-api')}}" class="btn btn-primary">{{ trans('skin3dviewer::messages.change_skin') }}</a>
-                    <button id="pauseButton" class="btn btn-secondary">{{ trans('skin3dviewer::messages.pause_animation') }}</button>
+                    <h3 class="mb-4">{{ trans('skin3d::messages.welcome_message', ['name' => Auth::user()->name]) }}</h3>
+                    <a href="{{ url('skin-api')}}" class="btn btn-primary">{{ trans('skin3d::messages.change_skin') }}</a>
+                    <button id="pauseButton" class="btn btn-secondary">{{ trans('skin3d::messages.pause_animation') }}</button>
                     @else
-                    <h3 class="mb-4">{{ trans('skin3dviewer::messages.noauth', ['name' => 'Steve']) }}</h3>
+                    <h3 class="mb-4">{{ trans('skin3d::messages.noauth', ['name' => 'Steve']) }}</h3>
 
-                    <a href="{{ url('user/login')}}" class="btn btn-primary">{{ trans('skin3dviewer::messages.login') }}</a>
+                    <a href="{{ url('user/login')}}" class="btn btn-primary">{{ trans('skin3d::messages.login') }}</a>
                     
-                    <a href="{{ url('user/register')}}" class="btn btn-primary">{{ trans('skin3dviewer::messages.register') }}</a>
+                    <a href="{{ url('user/register')}}" class="btn btn-primary">{{ trans('skin3d::messages.register') }}</a>
                     @endauth
                 </div>
             </div>
@@ -40,7 +40,7 @@
         skinUrl = "{{ url('api/skin-api/skins/' . Auth::user()->name) }}";
         userName = "{{ Auth::user()->name }}";
     @else
-        skinUrl = "{{ plugin_asset('skin3dviewer', 'img/steve.png') }}"; // Utilisation de plugin_asset pour l'image de Steve
+        skinUrl = "{{ plugin_asset('skin3d', 'img/steve.png') }}"; // Utilisation de plugin_asset pour l'image de Steve
         userName = "Steve";
     @endauth
 
@@ -57,7 +57,7 @@
 
     document.getElementById("pauseButton").addEventListener("click", function() {
         skinViewer.animation.paused = !skinViewer.animation.paused;
-        this.textContent = skinViewer.animation.paused ? "{{ trans('skin3dviewer::messages.resume_animation') }}" : "{{ trans('skin3dviewer::messages.pause_animation') }}";
+        this.textContent = skinViewer.animation.paused ? "{{ trans('skin3d::messages.resume_animation') }}" : "{{ trans('skin3d::messages.pause_animation') }}";
     });
 </script>
 

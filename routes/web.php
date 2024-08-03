@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\Skin3dviewer\Controllers\Skin3dviewerHomeController;
+use Azuriom\Plugin\Skin3d\Controllers\Skin3dHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 | as prefix. Now create something great!
 |
 */
-
-Route::get('/', [Skin3dviewerHomeController::class, 'index'])->name('index');
-
+Route::get('/', [Skin3dHomeController::class, 'index'])->name('index');

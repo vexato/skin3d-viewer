@@ -1,7 +1,7 @@
 {
-    "id": "skin3dviewer",
+    "id": "skin3d",
     "name": "Skin3D Viewer",
-    "description": "view your skin in 3D, skin-API compatible",
+    "description": "Plugin for Azuriom",
     "version": "0.0.4",
     "url": "https:\/\/market.azuriom.com\/resources\/148",
     "authors": [
@@ -9,11 +9,10 @@
     ],
     "azuriom_api": "1.1.0",
     "providers": [
-        "\\Azuriom\\Plugin\\Skin3dviewer\\Providers\\Skin3dviewerServiceProvider",
-        "\\Azuriom\\Plugin\\Skin3dviewer\\Providers\\RouteServiceProvider"
+        "\\Azuriom\\Plugin\\Skin3d\\Providers\\Skin3dServiceProvider",
+        "\\Azuriom\\Plugin\\Skin3d\\Providers\\RouteServiceProvider"
     ],
     "dependencies": {
         "skin-api": "^1.0.4"
-    },
-    "apiId": 148
+    }
 }

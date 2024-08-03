@@ -1,6 +1,6 @@
 <?php
 
-use Azuriom\Plugin\Skin3dviewer\Controllers\Admin\AdminController;
+use Azuriom\Plugin\Skin3d\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*

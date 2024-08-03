@@ -1,10 +1,10 @@
 {
-    "name": "azuriom/skin3dviewer",
+    "name": "azuriom/skin3d",
     "type": "azuriom-plugin",
     "description": "Plugin for Azuriom",
     "autoload": {
         "psr-4": {
-            "Azuriom\\Plugin\\Skin3dviewer\\": "src/"
+            "Azuriom\\Plugin\\Skin3d\\": "src/"
         }
     },
     "replace": {
