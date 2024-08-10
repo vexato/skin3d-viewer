@@ -16,7 +16,7 @@
             <div class="card">
                 <div class="card-body">
                     @auth
-                    <h3 class="mb-4">{{ trans('skin3d::messages.welcome_message', ['name' => Auth::user()->name]) }}</h3>
+                    <h3 class="mb-4">{{ $phrase }}</h3>
                     <a href="{{ url('skin-api')}}" class="btn btn-primary">{{ trans('skin3d::messages.change_skin') }}</a>
                     <button id="pauseButton" class="btn btn-secondary">{{ trans('skin3d::messages.pause_animation') }}</button>
                     @else
@@ -37,7 +37,11 @@
     let skinUrl, userName, authyes;
 
     @auth
-        skinUrl = "{{ url('api/skin-api/skins/' . Auth::user()->name) }}";
+        @if($service === 'premium')
+            skinUrl = "https://mineskin.eu/skin/{{ Auth::user()->name }}";
+        @else
+            skinUrl = "{{ url('api/skin-api/skins/' . Auth::user()->name) }}";
+        @endif
         userName = "{{ Auth::user()->name }}";
     @else
         skinUrl = "{{ plugin_asset('skin3d', 'img/steve.png') }}"; // Utilisation de plugin_asset pour l'image de Steve
