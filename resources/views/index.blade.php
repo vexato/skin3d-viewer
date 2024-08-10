@@ -54,6 +54,7 @@
         height: 600,
         skin: skinUrl
     });
+    
     skinViewer.zoom = 0.5;
     skinViewer.animation = new skinview3d.WalkingAnimation();
     skinViewer.fov = 70;
