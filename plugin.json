@@ -13,7 +13,7 @@
         "\\Azuriom\\Plugin\\Skin3d\\Providers\\RouteServiceProvider"
     ],
     "dependencies": {
-        "skin-api": "^1.0.4"
+        "skin-api?": "^1.0.4"
     },
     "apiId": 148
 }
