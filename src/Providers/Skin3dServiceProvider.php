@@ -87,10 +87,16 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
     {
         return [
             'skin3d viewer' => [
-                'name' => 'skin3Dviewer', // Traduction du nom de l'onglet
-                'icon' => 'bi bi-badge-3d', // Icône Bootstrap Icons
-                'route' => 'skin3d.admin.index', // Route de la page
+                'name' => 'skin3D viewer',
+                'icon' => 'bi bi-badge-3d',
+                'route' => 'skin3d.admin.index',
             ],
+            'skin3d API' => [
+                'name' => 'skin3D API',
+                'icon' => 'bi bi-badge-3d',
+                'route' => 'skin3d.admin.api',
+            ],
+
         ];
     }
 

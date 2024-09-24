@@ -1,4 +1,8 @@
 {
     "service": "premium",
-    "phrase": null
+    "phrase": null,
+    "background": null,
+    "backgroundMode": "background",
+    "showPhrase": true,
+    "showButtons": true
 }

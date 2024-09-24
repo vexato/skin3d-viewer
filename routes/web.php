@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [Skin3dHomeController::class, 'index'])->name('index');
+Route::get('/3d-api/premium/{pseudo}', [Skin3dHomeController::class, 'show3DModelPremium'])->name('3d.api');
+route::get('/3d-api/skin-api/{pseudo}', [Skin3dHomeController::class, 'show3D'])->name('3d');

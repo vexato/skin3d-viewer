@@ -1,13 +1,13 @@
 {
     "id": "skin3d",
     "name": "Skin3D Viewer",
-    "description": "Plugin for Azuriom",
-    "version": "1.0.0",
+    "description": "A 3D skin Minecraft viewer for Azuriom.",
+    "version": "1.1.0",
     "url": "https:\/\/market.azuriom.com\/resources\/148",
     "authors": [
         "Vexato"
     ],
-    "azuriom_api": "1.1.0",
+    "azuriom_api": "1.1.5",
     "providers": [
         "\\Azuriom\\Plugin\\Skin3d\\Providers\\Skin3dServiceProvider",
         "\\Azuriom\\Plugin\\Skin3d\\Providers\\RouteServiceProvider"

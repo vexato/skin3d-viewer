@@ -20,4 +20,9 @@ return [
     'settings_not_found' => 'Fichier de paramètres non trouvé.',
     'choose_service' => 'Choisir un Service',
     'phrase' => 'Créé votre phrase titre',
+    'show_phrase' => 'Afficher la phrase',
+    'show_buttons' => 'Afficher les boutons',
+    'choose_background' => 'Choisir un fond',
+    'no_background' => 'Pas de fond (transparent)',
+    'choose_bg_mod' => 'Choisir le mode du fond'
 ];

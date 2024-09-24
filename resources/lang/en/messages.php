@@ -20,4 +20,9 @@ return [
     'settings_not_found' => 'Settings file not found.',
     'choose_service' => 'Choose a Service',
     'phrase' => 'Create your title phrase',
+    'show_phrase' => 'Show phrase',
+    'show_buttons' => 'Show buttons',
+    'choose_background' => 'Choose a background',
+    'no_background' => 'No background (transparent)',
+    'choose_bg_mod' => 'Choose background mode',
 ];

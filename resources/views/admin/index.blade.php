@@ -30,13 +30,39 @@
                         <label for="phrase">{{ trans('skin3d::messages.phrase') }}</label>
                         <input type="text" class="form-control" id="phrase" placeholder="{{ trans('skin3d::messages.welcome_message') }}" name="phrase" value="{{ old('phrase', $currentPhrase) }}">
                         <ul class="list-group mt-2">
-                    <li class="list-group-item">
-                    <strong>placeholder: => </strong>
-                    <code> :name: </code>
-                    </li>
-                </ul>
-
+                            <li class="list-group-item">
+                                <strong>placeholder: => </strong>
+                                <code> :name: </code>
+                            </li>
+                        </ul>
                     </div>
+                    <div class="form-check mt-4">
+                        <input type="checkbox" class="form-check-input" id="showPhrase" name="showPhrase" {{ old('showPhrase', $showPhrase) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="showPhrase">{{ trans('skin3d::messages.show_phrase') }}</label>
+                    </div>
+                    <div class="form-check mt-4">
+                        <input type="checkbox" class="form-check-input" id="showButtons" name="showButtons" {{ old('showButtons', $showButtons) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="showButtons">{{ trans('skin3d::messages.show_buttons') }}</label>
+                    </div>
+                    
+                    <div class="form-group mt-4">
+                        <label for="background">{{ trans('skin3d::messages.choose_background') }}</label>
+                        <select class="form-control" id="background" name="background">
+                            <option value="" {{ old('background', $currentBackground) == '' ? 'selected' : '' }}>{{ trans('skin3d::messages.no_background') }}</option>
+                            @foreach($uploadedImages as $image)
+                                <option value="{{ $image }}" {{ old('background', $currentBackground) == $image ? 'selected' : '' }}>{{ basename($image) }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group mt-4">
+                        <label for="backgroundMode">{{ trans('skin3d::messages.choose_bg_mod') }}</label>
+                        <select class="form-control" id="backgroundMode" name="backgroundMode">
+                            <option value="background" {{ old('backgroundMode', $currentBackgroundMode) == 'background' ? 'selected' : '' }}>Background</option>
+                            <option value="panorama" {{ old('backgroundMode', $currentBackgroundMode) == 'panorama' ? 'selected' : '' }}>Panorama</option>
+                        </select>
+                    </div>
+
                     <button type="submit" class="btn btn-primary mt-2">{{ trans('skin3d::messages.save') }}</button>
                 </form>
             </div>
