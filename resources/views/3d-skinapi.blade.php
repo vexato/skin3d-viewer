@@ -14,7 +14,7 @@
         canvas: document.getElementById("skin_container"),
         width: 300,
         height: 200,
-        skin: "http://localhost/azu/api/skin-api/skins/{{ $pseudo }}"
+        skin: "{{ url('api/skin-api/skins/' . $pseudo) }}"
     });
 
 </script>
