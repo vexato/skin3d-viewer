@@ -121,28 +121,6 @@
         </div>
     </div>
     @push('scripts')
-    <script>
-
-        function copyIframeCode1() {
-            var iframe = document.getElementById('iframeCode1');
-            var iframeCode = `<iframe src="${iframe.src}" style="border: none; width: 319px; height: 221px;"></iframe>`;
-
-            navigator.clipboard.writeText(iframeCode).then(function() {
-                alert('Iframe code copied to clipboard!');
-            }, function(err) {
-                alert('Failed to copy iframe code: ', err);
-            });
-        }
-        function copyIframeCode2() {
-            var iframe = document.getElementById('iframeCode2');
-            var iframeCode = `<iframe src="${iframe.src}" style="border: none; width: 319px; height: 221px;"></iframe>`;
-
-            navigator.clipboard.writeText(iframeCode).then(function() {
-                alert('Iframe code copied to clipboard!');
-            }, function(err) {
-                alert('Failed to copy iframe code: ', err);
-            });
-        }
-    </script>
-@endpush
+    <script src="{{ plugin_asset('skin3d', 'js/script.admin.js')}}"></script>
+    @endpush
 @endsection

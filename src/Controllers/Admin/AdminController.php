@@ -16,12 +16,12 @@ class AdminController extends Controller
      */
     private function getSettings()
     {
-        // Chercher les paramètres dans la base de données (ici on prend le premier et unique enregistrement)
-        $service = skin3d::first(); // Utilisation correcte du modèle skin3d
 
-        // Si aucune configuration n'existe, en créer une avec les valeurs par défaut
+        $service = skin3d::first();
+
+
         if (!$service) {
-            $service = skin3d::create([ // Utilisation correcte du modèle skin3d
+            $service = skin3d::create([
                 'service' => 'premium',
                 'phrase' => '',
                 'background' => '',
@@ -72,10 +72,10 @@ class AdminController extends Controller
         $showButtons = $request->has('showButtons');
         $activeCapes = $request->has('activeCapes');
 
-        // Obtenir les paramètres actuels depuis la base de données
+
         $data = $this->getSettings();
 
-        // Mettre à jour les paramètres
+
         $data->update([
             'service' => $service,
             'phrase' => $phrase,
@@ -94,7 +94,7 @@ class AdminController extends Controller
      */
     public function api()
     {
-        // Obtenir les paramètres
+
         $data = $this->getSettings();
 
         return view('skin3d::admin.api', [

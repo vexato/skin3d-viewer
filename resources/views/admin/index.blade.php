@@ -65,6 +65,7 @@
                             @foreach($uploadedImages as $image)
                                 <option value="{{ $image }}" {{ old('background', $currentBackground) == $image ? 'selected' : '' }}>{{ basename($image) }}</option>
                             @endforeach
+
                         </select>
                         </div>
                     </div>
