@@ -13,4 +13,9 @@ return array(
     'save' => 'Save Image',
     'selected_image' => 'Currently selected background image',
     'success_message' => 'Background image selected successfully!',
+    'capes' => 'activate the player\'s cape',
+    'sk3dapi' => 'API Skin3D',
+    'sk3dviewer'  => 'skin3D viewer',
+    'settingsURL' => 'URL Settings',
+    'code_api_exemple_para' => 'API Use Code Example with parameters',
 );

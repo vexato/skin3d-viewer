@@ -86,15 +86,15 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
     protected function adminNavigation(): array
     {
         return [
-            'skin3d viewer' => [
+            'skin3d' => [
+                'type' => 'dropdown',
                 'name' => 'skin3D viewer',
                 'icon' => 'bi bi-badge-3d',
-                'route' => 'skin3d.admin.index',
-            ],
-            'skin3d API' => [
-                'name' => 'skin3D API',
-                'icon' => 'bi bi-badge-3d',
-                'route' => 'skin3d.admin.api',
+                'route' => 'skin3d.admin.*',
+                'items' => [
+                    'skin3d.admin.index' => trans('skin3d::admin.sk3dviewer'),
+                    'skin3d.admin.api' => trans('skin3d::admin.sk3dapi'),
+                ],
             ],
 
         ];

@@ -10,7 +10,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-6 d-flex justify-content-center align-items-center">
-            <canvas id="skin_container" style="cursor: grab; background-size:cover;"></canvas>
+            <canvas id="skin_container" @if($background == null)class="border-skin" @endif style="cursor: grab; background-size:cover;"></canvas>
         </div>
 
         @if($showPhrase || $showButtons)
@@ -43,7 +43,7 @@
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/skinview3d@3.0.1/bundles/skinview3d.bundle.min.js"></script>
+<script src="{{ plugin_asset('skin3d', 'js/skinview3d.bundle.min.js')}}"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         let skinUrl, userName;
@@ -65,7 +65,12 @@
             zoom: 0.5,
             fov: 70,
             nameTag: userName
+
         });
+
+        @if ($actiCapes and $service === 'premium')
+            skinViewer.loadCape("{{ $imageUrl }}");
+        @endif
 
         skinViewer.animation = new skinview3d.WalkingAnimation();
 
@@ -100,8 +105,8 @@
         if (pauseButton) {
             pauseButton.addEventListener("click", function () {
                 skinViewer.animation.paused = !skinViewer.animation.paused;
-                this.textContent = skinViewer.animation.paused 
-                    ? "{{ trans('skin3d::messages.resume_animation') }}" 
+                this.textContent = skinViewer.animation.paused
+                    ? "{{ trans('skin3d::messages.resume_animation') }}"
                     : "{{ trans('skin3d::messages.pause_animation') }}";
             });
         }

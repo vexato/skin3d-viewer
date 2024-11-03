@@ -10,13 +10,21 @@
 <script src="https://cdn.jsdelivr.net/npm/skinview3d@3.0.1/bundles/skinview3d.bundle.min.js"></script>
 
 <script>
+    function getURLParameter(name) {
+        return new URLSearchParams(window.location.search).get(name);
+    }
+
+    let zoom = getURLParameter('zoom') === 'false';
+
     let skinViewer = new skinview3d.SkinViewer({
         canvas: document.getElementById("skin_container"),
         width: 300,
         height: 200,
         skin: "https://mineskin.eu/skin/{{ $pseudo }}"
     });
-
+    if (zoom) {
+        skinViewer.controls.enableZoom = false;
+    }
 </script>
 </body>
 </html>

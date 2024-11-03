@@ -13,4 +13,9 @@ return [
     'save' => 'Enregistrer l\'image',
     'selected_image' => 'Image de fond actuellement sélectionnée',
     'success_message' => 'Image de fond sélectionnée avec succès!',
+    'capes' => 'activer la Cape du joueur',
+    'sk3dapi' => 'API Skin3D',
+    'sk3dviewer'  => 'skin3D viewer',
+    'settingsURL' => 'Paramètres de l\'URL',
+    'code_api_exemple_para' => 'Exemple de code d\'utilisation de l\'API avec des paramètres',
 ];

@@ -5,77 +5,100 @@ namespace Azuriom\Plugin\Skin3d\Controllers\Admin;
 use Azuriom\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
 class AdminController extends Controller
 {
     /**
-     * Show the home admin page of the plugin.
+     * Obtenir les paramètres depuis la base de données ou créer une nouvelle entrée avec des valeurs par défaut s'il n'existe pas encore de configuration.
+     *
+     * @return skin3d
+     */
+    private function getSettings()
+    {
+        // Chercher les paramètres dans la base de données (ici on prend le premier et unique enregistrement)
+        $service = skin3d::first(); // Utilisation correcte du modèle skin3d
+
+        // Si aucune configuration n'existe, en créer une avec les valeurs par défaut
+        if (!$service) {
+            $service = skin3d::create([ // Utilisation correcte du modèle skin3d
+                'service' => 'premium',
+                'phrase' => '',
+                'background' => '',
+                'backgroundMode' => 'background',
+                'showPhrase' => true,
+                'showButtons' => true,
+                'activeCapes' => true,
+            ]);
+        }
+
+        return $service;
+    }
+
+    /**
+     * Afficher la page d'administration principale du plugin.
      */
     public function index()
     {
-        // Read the JSON file to get the current values
-        $filePath = plugin_path('skin3d/assets/json/settings.json');
-        $json = file_get_contents($filePath);
-        $data = json_decode($json, true);
+        // Obtenir les paramètres depuis la base de données
+        $data = $this->getSettings();
 
-        $currentService = $data['service'] ?? 'premium';
-        $currentPhrase = $data['phrase'] ?? '';
-        $currentBackground = $data['background'] ?? '';
-        $currentBackgroundMode = $data['backgroundMode'] ?? 'background'; // Added this line
-        $showPhrase = $data['showPhrase'] ?? true;
-        $showButtons = $data['showButtons'] ?? true;
-
-        // Get a list of uploaded images
+        // Obtenir la liste des images téléchargées
         $uploadedImages = Storage::files('public/img');
 
         return view('skin3d::admin.index', [
-            'currentService' => $currentService,
-            'currentPhrase' => $currentPhrase,
-            'currentBackground' => $currentBackground,
-            'currentBackgroundMode' => $currentBackgroundMode, // Added this line
+            'currentService' => $data->service,
+            'currentPhrase' => $data->phrase,
+            'currentBackground' => $data->background,
+            'currentBackgroundMode' => $data->backgroundMode,
             'uploadedImages' => $uploadedImages,
-            'showPhrase' => $showPhrase,
-            'showButtons' => $showButtons
+            'showPhrase' => $data->showPhrase,
+            'showButtons' => $data->showButtons,
+            'activeCapes' => $data->activeCapes,
         ]);
     }
 
     /**
-     * Update the settings in the JSON file.
+     * Mettre à jour les paramètres dans la base de données.
      */
     public function update(Request $request)
     {
+        // Récupérer les entrées du formulaire
         $service = $request->input('service');
         $phrase = $request->input('phrase');
         $background = $request->input('background');
-        $backgroundMode = $request->input('backgroundMode', 'background'); // Added this line
+        $backgroundMode = $request->input('backgroundMode', 'background');
         $showPhrase = $request->has('showPhrase');
         $showButtons = $request->has('showButtons');
+        $activeCapes = $request->has('activeCapes');
 
-        $filePath = plugin_path('skin3d/assets/json/settings.json');
-        $json = file_get_contents($filePath);
-        $data = json_decode($json, true);
+        // Obtenir les paramètres actuels depuis la base de données
+        $data = $this->getSettings();
 
-        $data['service'] = $service;
-        $data['phrase'] = $phrase;
-        $data['background'] = $background;
-        $data['backgroundMode'] = $backgroundMode; // Added this line
-        $data['showPhrase'] = $showPhrase;
-        $data['showButtons'] = $showButtons;
-
-        file_put_contents($filePath, json_encode($data, JSON_PRETTY_PRINT));
+        // Mettre à jour les paramètres
+        $data->update([
+            'service' => $service,
+            'phrase' => $phrase,
+            'background' => $background,
+            'backgroundMode' => $backgroundMode,
+            'showPhrase' => $showPhrase,
+            'showButtons' => $showButtons,
+            'activeCapes' => $activeCapes,
+        ]);
 
         return redirect()->route('skin3d.admin.index')->with('success', 'Settings updated successfully.');
     }
 
+    /**
+     * Afficher la page API du plugin.
+     */
     public function api()
     {
-        $filePath = plugin_path('skin3d/assets/json/settings.json');
-        $json = file_get_contents($filePath);
-        $data = json_decode($json, true);
+        // Obtenir les paramètres
+        $data = $this->getSettings();
 
-        $currentService2 = $data['service'] ?? 'premium';
         return view('skin3d::admin.api', [
-            'currentService' => $currentService2,
+            'currentService' => $data->service,
         ]);
     }
 }
