@@ -1,1 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="doc-title">Documentation - Skin 3D</title>
+    <script src="https://cdn.tailwindcss.com"></script>        
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <header class="bg-blue-600 text-white p-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-4xl font-bold transition-transform transform hover:scale-105" id="doc-title" aria-label="Documentation - Skin 3D">Documentation - Skin 3D</h1>
+            <div class="relative">
+                <select id="language-selector" class="bg-blue-700 text-white px-4 py-2 rounded hover:bg-blue-800" onchange="switchLanguage(this.value)">
+                    
+                </select>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto my-8 p-6 bg-white rounded-lg shadow-md animate-fade fade-in" id="main-content">
+        <section>
+            <h2 class="text-3xl font-semibold mb-4" id="add-component-title">Ajouter le Composant Skin 3D</h2>
+            <p class="mb-4" id="intro-text">Pour intégrer le composant <strong>Skin 3D</strong> dans votre thème Azuriom, choisissez l'une des directives suivantes selon le type de service que vous souhaitez utiliser :</p>
+
+            <h3 class="text-2xl font-semibold mt-6 mb-2" id="service-premium-title">Service Premium</h3>
+            <p class="mb-4" id="premium-text">Utilisez cette directive pour activer le service premium :</p>
+            <pre class="bg-gray-200 p-4 rounded-lg overflow-x-auto mb-4 transition-transform transform hover:scale-105">
+                <code>@include('skin3d::components.skin3d', ['service' => 'premium'])</code>
+            </pre>
+
+            <h3 class="text-2xl font-semibold mt-6 mb-2" id="service-skinapi-title">Service Skin-api</h3>
+            <p class="mb-4" id="skinapi-text">Si vous préférez utiliser le service Skin-api, appliquez la directive suivante :</p>
+            <pre class="bg-gray-200 p-4 rounded-lg overflow-x-auto mb-4 transition-transform transform hover:scale-105">
+                <code>@include('skin3d::components.skin3d', ['service' => 'skin_api'])</code>
+            </pre>
+
+            <h3 class="text-2xl font-semibold mt-6 mb-2" id="integration-instructions-title">Instructions d'Intégration</h3>
+            <ol class="list-decimal list-inside mb-4">
+                <li class="mb-2" id="instruction-1">Insérez la directive choisie (<code>premium</code> ou <code>skin_api</code>) à l'endroit souhaité dans votre code.</li>
+                <li class="mb-2" id="instruction-2">Enregistrez vos modifications et vérifiez le rendu sur votre site.</li>
+            </ol>
+
+            <h3 class="text-2xl font-semibold mt-6 mb-2" id="remarks-title">Remarques</h3>
+            <p class="mb-4" id="remarks-text">- Assurez-vous que le plugin <a class="text-blue-600 underline hover:text-blue-400" href="https://market.azuriom.com/resources/148">Skin3D Viewer</a> est bien installé et configuré sur votre site.<br>- Pour utiliser le service Skin-api, consultez le <a class="text-blue-600 underline hover:text-blue-400" href="https://market.azuriom.com/resources/18">plugin Skin-api</a>.<br>- Pour toute question ou problème, consultez la <a class="text-blue-600 underline hover:text-blue-400" href="https://azuriom.com/">documentation officielle d'Azuriom</a> ou contactez le support.</p>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2024 Skin 3D. Tous droits réservés.</p>
+    </footer>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
