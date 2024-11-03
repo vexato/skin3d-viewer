@@ -1,5 +1,5 @@
 {
-    "fr": {
+    "🇫🇷 fr": {
         "title": "Documentation - Skin 3D",
         "addComponentTitle": "Ajouter le Composant Skin 3D",
         "introText": "Pour intégrer le composant <strong>Skin 3D</strong> dans votre thème Azuriom, choisissez l'une des directives suivantes selon le type de service que vous souhaitez utiliser :",
@@ -13,7 +13,7 @@
         "remarksTitle": "Remarques",
         "remarksText": "- Assurez-vous que le plugin <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/148'>Skin3D Viewer</a> est bien installé et configuré sur votre site.<br>- Pour utiliser le service Skin-api, consultez le <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/18'>plugin Skin-api</a>.<br>- Pour toute question ou problème, consultez la <a class='text-blue-600 underline hover:text-blue-400' href='https://azuriom.com/'>documentation officielle d'Azuriom</a> ou contactez le support."
     },
-    "en": {
+    "🇬🇧 en": {
         "title": "Documentation - Skin 3D",
         "addComponentTitle": "Add the Skin 3D Component",
         "introText": "To integrate the <strong>Skin 3D</strong> component into your Azuriom theme, choose one of the following directives based on the type of service you wish to use:",
@@ -27,7 +27,7 @@
         "remarksTitle": "Remarks",
         "remarksText": "- Make sure the <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/148'>Skin3D Viewer</a> plugin is properly installed and configured on your site.<br>- To use the Skin-api service, refer to the <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/18'>Skin-api plugin</a>.<br>- For any questions or issues, consult the <a class='text-blue-600 underline hover:text-blue-400' href='https://azuriom.com/'>official Azuriom documentation</a> or contact support."
     },
-    "es": {
+    "🇪🇸 es": {
         "title": "Documentación - Skin 3D",
         "addComponentTitle": "Agregar el Componente Skin 3D",
         "introText": "Para integrar el componente <strong>Skin 3D</strong> en su tema Azuriom, elija una de las siguientes directivas según el tipo de servicio que desee utilizar:",
@@ -41,7 +41,7 @@
         "remarksTitle": "Notas",
         "remarksText": "- Asegúrese de que el plugin <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/148'>Skin3D Viewer</a> esté correctamente instalado y configurado en su sitio.<br>- Para utilizar el servicio Skin-api, consulte el <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/18'>plugin Skin-api</a>.<br>- Para cualquier pregunta o problema, consulte la <a class='text-blue-600 underline hover:text-blue-400' href='https://azuriom.com/'>documentación oficial de Azuriom</a> o contacte al soporte."
     },
-    "de": {
+    "🇩🇪 de": {
         "title": "Dokumentation - Skin 3D",
         "addComponentTitle": "Skin 3D-Komponente hinzufügen",
         "introText": "Um die <strong>Skin 3D</strong>-Komponente in Ihr Azuriom-Theme zu integrieren, wählen Sie eine der folgenden Direktiven basierend auf dem gewünschten Diensttyp:",
@@ -55,7 +55,7 @@
         "remarksTitle": "Bemerkungen",
         "remarksText": "- Stellen Sie sicher, dass das Plugin <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/148'>Skin3D Viewer</a> ordnungsgemäß auf Ihrer Website installiert und konfiguriert ist.<br>- Um den Skin-api-Service zu nutzen, beziehen Sie sich auf das <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/18'>Skin-api-Plugin</a>.<br>- Bei Fragen oder Problemen konsultieren Sie die <a class='text-blue-600 underline hover:text-blue-400' href='https://azuriom.com/'>offizielle Azuriom-Dokumentation</a> oder kontaktieren Sie den Support."
     },
-    "ru": {
+    "🇷🇺 ru": {
         "title": "Документация - Skin 3D",
         "addComponentTitle": "Добавить компонент Skin 3D",
         "introText": "Чтобы интегрировать компонент <strong>Skin 3D</strong> в вашу тему Azuriom, выберите одну из следующих директив в зависимости от типа услуги, которую вы хотите использовать:",
@@ -69,7 +69,7 @@
         "remarksTitle": "Замечания",
         "remarksText": "- Убедитесь, что плагин <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/148'>Skin3D Viewer</a> правильно установлен и настроен на вашем сайте.<br>- Чтобы использовать службу Skin-api, обратитесь к <a class='text-blue-600 underline hover:text-blue-400' href='https://market.azuriom.com/resources/18'>плагину Skin-api</a>.<br>- Если у вас есть вопросы или проблемы, проконсультируйтесь с <a class='text-blue-600 underline hover:text-blue-400' href='https://azuriom.com/'>официальной документацией Azuriom</a> или свяжитесь со службой поддержки."
     },
-    "zh": {
+    "🇨🇳 zh": {
         "title": "文档 - Skin 3D",
         "addComponentTitle": "添加 Skin 3D 组件",
         "introText": "要将 <strong>Skin 3D</strong> 组件集成到您的 Azuriom 主题中，请根据您希望使用的服务类型选择以下指令之一：",
