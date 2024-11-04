@@ -19,7 +19,9 @@
                 <div class="card-body">
                     @auth
                         @if($showPhrase)
-                            <h3 class="mb-4">{{ $phrase }}</h3>
+                            <h3 class="mb-4">@if($phrase == null){{ str_replace(':name:', Auth::user()->name, __('skin3d::messages.welcome_message')) }}
+
+                                @else{{ $phrase }}@endif</h3>
                         @endif
                         @if($showButtons)
                             <a href="{{ url('skin-api')}}" class="btn btn-primary">{{ trans('skin3d::messages.change_skin') }}</a>

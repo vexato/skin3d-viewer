@@ -4,6 +4,7 @@ namespace Azuriom\Plugin\Skin3d\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
@@ -12,16 +13,29 @@ class AdminController extends Controller
     /**
      * Obtenir les paramètres depuis la base de données ou créer une nouvelle entrée avec des valeurs par défaut s'il n'existe pas encore de configuration.
      *
-     * @return skin3d
+     * @return Skin3d
      */
     private function getSettings()
     {
 
-        $service = skin3d::first();
+        if (!Schema::hasTable('skin3d')) {
+            Schema::create('skin3d', function ($table) {
+                $table->id();
+                $table->string('service');
+                $table->string('phrase')->nullable();
+                $table->string('background')->nullable();
+                $table->string('backgroundMode')->default('background');
+                $table->boolean('showPhrase')->default(true);
+                $table->boolean('showButtons')->default(true);
+                $table->boolean('activeCapes')->default(true);
+                $table->timestamps();
+            });
+        }
 
+        $service = Skin3d::first();
 
         if (!$service) {
-            $service = skin3d::create([
+            $service = Skin3d::create([
                 'service' => 'premium',
                 'phrase' => '',
                 'background' => '',
@@ -72,9 +86,7 @@ class AdminController extends Controller
         $showButtons = $request->has('showButtons');
         $activeCapes = $request->has('activeCapes');
 
-
         $data = $this->getSettings();
-
 
         $data->update([
             'service' => $service,
@@ -94,7 +106,6 @@ class AdminController extends Controller
      */
     public function api()
     {
-
         $data = $this->getSettings();
 
         return view('skin3d::admin.api', [
