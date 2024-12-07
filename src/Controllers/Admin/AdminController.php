@@ -4,24 +4,53 @@ namespace Azuriom\Plugin\Skin3d\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Schema\Blueprint;
 use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
 class AdminController extends Controller
 {
     /**
+     * Vérifie et met à jour la structure de la table si nécessaire.
+     */
+    private function ensureTableStructure()
+    {
+        if (!Schema::hasTable('skin3d')) {
+            Schema::create('skin3d', function (Blueprint $table) {
+                $table->id();
+                $table->string('service');
+                $table->string('phrase')->nullable();
+                $table->string('background')->nullable();
+                $table->string('backgroundMode')->default('background');
+                $table->boolean('showPhrase')->default(true);
+                $table->boolean('showButtons')->default(true);
+                $table->boolean('activeCapes')->default(true);
+                $table->string('custom_capes_api')->nullable();
+                $table->timestamps();
+            });
+        } else {
+            Schema::table('skin3d', function (Blueprint $table) {
+                if (!Schema::hasColumn('skin3d', 'custom_capes_api')) {
+                    $table->string('custom_capes_api')->nullable();
+                }
+            });
+        }
+    }
+
+    /**
      * Obtenir les paramètres depuis la base de données ou créer une nouvelle entrée avec des valeurs par défaut s'il n'existe pas encore de configuration.
      *
-     * @return skin3d
+     * @return Skin3d
      */
     private function getSettings()
     {
-        // Chercher les paramètres dans la base de données (ici on prend le premier et unique enregistrement)
-        $service = skin3d::first(); // Utilisation correcte du modèle skin3d
+        $this->ensureTableStructure();
 
-        // Si aucune configuration n'existe, en créer une avec les valeurs par défaut
+        $service = Skin3d::first();
+
         if (!$service) {
-            $service = skin3d::create([ // Utilisation correcte du modèle skin3d
+            $service = Skin3d::create([
                 'service' => 'premium',
                 'phrase' => '',
                 'background' => '',
@@ -29,6 +58,7 @@ class AdminController extends Controller
                 'showPhrase' => true,
                 'showButtons' => true,
                 'activeCapes' => true,
+                'custom_capes_api' => null,
             ]);
         }
 
@@ -55,6 +85,7 @@ class AdminController extends Controller
             'showPhrase' => $data->showPhrase,
             'showButtons' => $data->showButtons,
             'activeCapes' => $data->activeCapes,
+            'customCapesApi' => $data->custom_capes_api,
         ]);
     }
 
@@ -64,26 +95,17 @@ class AdminController extends Controller
     public function update(Request $request)
     {
         // Récupérer les entrées du formulaire
-        $service = $request->input('service');
-        $phrase = $request->input('phrase');
-        $background = $request->input('background');
-        $backgroundMode = $request->input('backgroundMode', 'background');
-        $showPhrase = $request->has('showPhrase');
-        $showButtons = $request->has('showButtons');
-        $activeCapes = $request->has('activeCapes');
-
-        // Obtenir les paramètres actuels depuis la base de données
         $data = $this->getSettings();
 
-        // Mettre à jour les paramètres
         $data->update([
-            'service' => $service,
-            'phrase' => $phrase,
-            'background' => $background,
-            'backgroundMode' => $backgroundMode,
-            'showPhrase' => $showPhrase,
-            'showButtons' => $showButtons,
-            'activeCapes' => $activeCapes,
+            'service' => $request->input('service'),
+            'phrase' => $request->input('phrase'),
+            'background' => $request->input('background'),
+            'backgroundMode' => $request->input('backgroundMode', 'background'),
+            'showPhrase' => $request->has('showPhrase'),
+            'showButtons' => $request->has('showButtons'),
+            'activeCapes' => $request->has('activeCapes'),
+            'custom_capes_api' => $request->input('customCapesApi'),
         ]);
 
         return redirect()->route('skin3d.admin.index')->with('success', 'Settings updated successfully.');
@@ -94,7 +116,6 @@ class AdminController extends Controller
      */
     public function api()
     {
-        // Obtenir les paramètres
         $data = $this->getSettings();
 
         return view('skin3d::admin.api', [

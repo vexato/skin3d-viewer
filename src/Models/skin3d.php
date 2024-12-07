@@ -11,6 +11,6 @@ class Skin3d extends Model
 
     protected $table = 'skin3d';
     protected $fillable = [
-        'service', 'phrase', 'background', 'backgroundMode', 'showPhrase', 'showButtons', 'activeCapes',
+        'service', 'phrase', 'background', 'backgroundMode', 'showPhrase', 'showButtons', 'activeCapes', 'custom_capes_api',
     ];
 }

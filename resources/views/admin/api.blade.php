@@ -95,23 +95,23 @@
                 </ul>
                 <style>
                     .iframe-container {
-                        display: flex; /* Permet de placer les boîtes côte à côte */
-                        justify-content: space-between; /* Espacement entre les boîtes */
-                        flex-wrap: wrap; /* Permet de passer à la ligne si l'espace est insuffisant */
+                        display: flex;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
                     }
 
                     .iframe-box {
                         border-radius: 10px;
-                        border: 1px solid #ccc; /* Bordure autour de chaque iframe */
-                        padding: 10px; /* Espacement à l'intérieur de la boîte */
-                        width: 48%; /* Largeur de chaque boîte */
-                        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Ombre pour un effet de profondeur */
-                        margin-bottom: 20px; /* Espacement entre les boîtes sur petits écrans */
+                        border: 1px solid #ccc;
+                        padding: 10px;
+                        width: 48%;
+                        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+                        margin-bottom: 20px;
                     }
 
-                    @media (max-width: 768px) { /* Pour les écrans de 768px ou moins */
+                    @media (max-width: 768px) {
                         .iframe-box {
-                            width: 100%; /* Chaque boîte prend toute la largeur */
+                            width: 100%;
                         }
                     }
                 </style>
@@ -121,28 +121,6 @@
         </div>
     </div>
     @push('scripts')
-    <script>
-
-        function copyIframeCode1() {
-            var iframe = document.getElementById('iframeCode1');
-            var iframeCode = `<iframe src="${iframe.src}" style="border: none; width: 319px; height: 221px;"></iframe>`;
-
-            navigator.clipboard.writeText(iframeCode).then(function() {
-                alert('Iframe code copied to clipboard!');
-            }, function(err) {
-                alert('Failed to copy iframe code: ', err);
-            });
-        }
-        function copyIframeCode2() {
-            var iframe = document.getElementById('iframeCode2');
-            var iframeCode = `<iframe src="${iframe.src}" style="border: none; width: 319px; height: 221px;"></iframe>`;
-
-            navigator.clipboard.writeText(iframeCode).then(function() {
-                alert('Iframe code copied to clipboard!');
-            }, function(err) {
-                alert('Failed to copy iframe code: ', err);
-            });
-        }
-    </script>
-@endpush
+    <script src="{{ plugin_asset('skin3d', 'js/script.admin.js')}}"></script>
+    @endpush
 @endsection

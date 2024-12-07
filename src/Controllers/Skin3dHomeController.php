@@ -5,6 +5,7 @@ namespace Azuriom\Plugin\Skin3d\Controllers;
 use Azuriom\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Schema;
 use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
 class Skin3dHomeController extends Controller
@@ -14,30 +15,47 @@ class Skin3dHomeController extends Controller
      */
     public function index()
     {
+        // Vérifier si la table existe
+        if (!Schema::hasTable('skin3d')) {
+            // Si la table n'existe pas, créer la table
+            Schema::create('skin3d', function ($table) {
+                $table->id();
+                $table->string('service');
+                $table->string('phrase')->nullable();
+                $table->string('background')->nullable();
+                $table->string('backgroundMode')->default('background');
+                $table->boolean('showPhrase')->default(true);
+                $table->boolean('showButtons')->default(true);
+                $table->boolean('activeCapes')->default(true);
+                $table->timestamps();
+            });
+        }
 
         $data = Skin3d::first();
 
         // défaut
         if (!$data) {
-            $data = [
+            $data = Skin3d::create([
                 'service' => 'premium',
-                'phrase' => 'Welcome to Skin3D!',
+                'phrase' => '',
                 'background' => '',
                 'backgroundMode' => 'background',
                 'showPhrase' => true,
                 'showButtons' => true,
                 'activeCapes' => true,
-            ];
+                'custom_capes_api' => null,
+            ]);
         }
 
         // Initialisation des données locales
-        $phrase = $data['phrase'] ?? 'Welcome to Skin3D!';
-        $service = $data['service'] ?? 'premium';
-        $showPhrase = $data['showPhrase'] ?? true;
-        $showButtons = $data['showButtons'] ?? true;
-        $background = $data['background'];
-        $bgmode = $data['backgroundMode'];
-        $actiCapes = $data['activeCapes'] ?? true;
+        $phrase = $data->phrase ?? 'Welcome to Skin3D!';
+        $service = $data->service ?? 'premium';
+        $showPhrase = $data->showPhrase ?? true;
+        $showButtons = $data->showButtons ?? true;
+        $background = $data->background;
+        $bgmode = $data->backgroundMode;
+        $actiCapes = $data->activeCapes ?? true;
+        $customCapesApi = $data->custom_capes_api;
 
         // Si l'utilisateur est authentifié, personnaliser la phrase
         if (Auth::check()) {
@@ -47,8 +65,9 @@ class Skin3dHomeController extends Controller
             $pseudo = 'defaultPseudo';
         }
 
+        $imageUrl = null;
         // Logique pour le service premium
-        if ($service == 'premium') {
+        if ($service == 'premium' && $actiCapes) {
             $apiUrl = "https://api.capes.dev/load/{$pseudo}/minecraft";
             $response = Http::get($apiUrl);
 
@@ -58,9 +77,11 @@ class Skin3dHomeController extends Controller
             } else {
                 $imageUrl = null;
             }
-        } else {
-            $imageUrl = null;
         }
+        if ($service == 'skin_api' && $actiCapes) {
+            $imageUrl = str_replace(':pseudo:', $pseudo, $customCapesApi);
+        }
+
         function transformBackgroundPath($background)
         {
             $transformedBackground = str_replace('public/', 'storage/', $background);

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->boolean('showPhrase')->default(true);
             $table->boolean('showButtons')->default(true);
             $table->boolean('activeCapes')->default(true);
+            $table->string('custom_capes_api')->nullable();
             $table->timestamps();
         });
     }
