@@ -22,6 +22,11 @@
                             <strong>{{ trans('skin3d::admin.instruction_api') }}</strong> :
                             <a href="{{ url('skin3d/3d-api/premium/')}}" target="_blank">
                                 <code>{{ url('skin3d/3d-api/premium/PSEUDO')}}</code>
+
+                            </a>
+                            Or
+                            <a href="{{ url('skin3d/3d-api/premium/')}}" target="_blank">
+                                <code>{{ url('skin3d/3d-api/premium/PSEUDO/width/height')}}</code>
                             </a>
                         </li>
 
@@ -59,6 +64,10 @@
                             <strong>{{ trans('skin3d::admin.instruction_api_skap') }}</strong> :
                             <a href="{{ url('skin3d/3d-api/skin-api/PSEUDO')}}" target="_blank">
                                 <code>{{ url('skin3d/3d-api/skin-api/PSEUDO')}}</code>
+                            </a>
+                            OR 
+                            <a href="{{ url('skin3d/3d-api/skin-api/PSEUDO')}}" target="_blank">
+                                <code>{{ url('skin3d/3d-api/skin-api/PSEUDO/width/height')}}</code>
                             </a>
                         </li>
 

@@ -18,8 +18,8 @@
 
     let skinViewer = new skinview3d.SkinViewer({
         canvas: document.getElementById("skin_container"),
-        width: 300,
-        height: 200,
+        width: {{ $width }},
+        height: {{ $height }},
         skin: "https://mineskin.eu/skin/{{ $pseudo }}"
     });
     if (zoom) {

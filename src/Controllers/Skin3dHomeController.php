@@ -103,13 +103,13 @@ class Skin3dHomeController extends Controller
         ]);
     }
 
-    public function show3DModelPremium($pseudo)
+    public function show3DModelPremium($pseudo, $width, $height)
     {
-        return response()->view('skin3d::3d-model', compact('pseudo'));
+        return response()->view('skin3d::3d-model', compact('pseudo', 'width', 'height'));
     }
 
-    public function show3D($pseudo)
+    public function show3D($pseudo, $width, $height)
     {
-        return response()->view('skin3d::3d-skinapi', compact('pseudo'));
+        return response()->view('skin3d::3d-skinapi', compact('pseudo', 'width', 'height'));
     }
 }
