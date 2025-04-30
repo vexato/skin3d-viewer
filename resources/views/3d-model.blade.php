@@ -20,7 +20,7 @@
         canvas: document.getElementById("skin_container"),
         width: {{ $width }},
         height: {{ $height }},
-        skin: "https://mineskin.eu/skin/{{ $pseudo }}"
+        skin: "https://mc-heads.net/skin/{{ $pseudo }}"
     });
     if (zoom) {
         skinViewer.controls.enableZoom = false;
