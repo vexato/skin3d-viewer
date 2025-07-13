@@ -1,15 +1,34 @@
-Visualize your skin in **3D**, compatible with the *Skin-API* plugin, including a walking animation and more features to come.
+# 🧍‍♂️ Skin3D Viewer – Minecraft Skin Visualization in 3D
 
-HOW TO USE?
+Display your **Minecraft skin in 3D** directly on your website.
+Includes a **smooth walking animation** and full compatibility with:
 
-you must go to :
- - **https://YOURSITE.COM/skin3d/**
+* **Minecraft Premium** accounts
+* The [Skin-API plugin](https://market.azuriom.com/resources/18)
 
+---
 
-(replace YOURSITE.COM with your domain name, for example: azuriom.com => https://azuriom.com/skin3d/)
+## 🔗 How to Use
 
-**USER VIEW**
-![](https://market.azuriom.com/storage/resources/attachments/kByJaMbV3fcxajMg7t76GtdAwfDMPu5zQ6iXE3VC.png)
+1. Go to the `/skin3d` page on your website
+   👉 Example: `https://example.web/skin3d`
+2. Your skin will automatically be displayed in **real-time 3D**.
 
-**ADMIN DASHBAORD**
-![](https://market.azuriom.com/storage/resources/attachments/8FTu2JBSIjTXhM9jlY2yt07dkht1BI07IpO3ncD2.png)
+---
+
+## 📸 Preview
+
+![Skin3D Preview](https://market.azuriom.com/storage/resources/attachments/kByJaMbV3fcxajMg7t76GtdAwfDMPu5zQ6iXE3VC.png)
+
+---
+
+## ✨ Features
+
+* **Real-time 3D** rendering
+* **Smooth walking animation**
+* Compatible with the Skin-API plugin
+* More features coming soon!
+
+---
+
+> 💡 Integrate **Skin3D** into your website or launcher using the dedicated API for an immersive Minecraft skin visualization experience.
