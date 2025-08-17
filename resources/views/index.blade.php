@@ -5,7 +5,6 @@
 @push('styles')
     <link href="{{ plugin_asset('skin3d', 'css/style.css') }}" rel="stylesheet"/>
     <style>
-        /* Ajout de quelques ajustements pour améliorer l'UI */
         .card-body {
             padding: 30px;
             text-align: center;
@@ -33,7 +32,6 @@
             margin-top: 10px;
         }
 
-        /* Effet au survol du bouton */
         .btn:hover {
             opacity: 0.8;
             transform: scale(1.05);
@@ -91,7 +89,6 @@
             
             @auth
                 @if($isBedrockUser)
-                    // Utilisateur Bedrock - utiliser l'API Starlight
                     const xuid = '{{ Auth::user()->game_id }}' || '2535406248655892';
                     
                     fetch('https://starlightskins.lunareclipse.studio/info/user/.' + xuid)
@@ -105,13 +102,12 @@
                             initializeSkinViewer();
                         })
                         .catch(error => {
-                            console.error('Erreur lors du chargement du skin Bedrock:', error);
+                            console.error('Error on Bedrock skin loading:', error);
                             skinUrl = "{{ plugin_asset('skin3d', 'img/steve.png') }}";
                             initializeSkinViewer();
                         });
                     userName = "{{ Auth::user()->name }}";
                 @else
-                    // Utilisateur Java Edition
                     skinUrl = "{{ $service === 'premium' ? 'https://mc-heads.net/skin/' . Auth::user()->name : url('api/skin-api/skins/' . Auth::user()->name) }}";
                     userName = "{{ Auth::user()->name }}";
                     initializeSkinViewer();

@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Azuriom\Plugin\Skin3d\Models\Skin3d;
-use Azuriom\Plugin\Skin3d\Helpers\BedrockHelper;
 
 class Skin3dHomeController extends Controller
 {

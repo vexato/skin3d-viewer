@@ -11,9 +11,6 @@ use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
 class AdminController extends Controller
 {
-    /**
-     * Vérifie et met à jour la structure de la table si nécessaire.
-     */
     private function ensureTableStructure()
     {
         if (!Schema::hasTable('skin3d')) {
@@ -37,12 +34,6 @@ class AdminController extends Controller
             });
         }
     }
-
-    /**
-     * Obtenir les paramètres depuis la base de données ou créer une nouvelle entrée avec des valeurs par défaut s'il n'existe pas encore de configuration.
-     *
-     * @return Skin3d
-     */
     private function getSettings()
     {
         $this->ensureTableStructure();
@@ -65,16 +56,12 @@ class AdminController extends Controller
         return $service;
     }
 
-    /**
-     * Afficher la page d'administration principale du plugin.
-     */
+
     public function index()
     {
-        // Obtenir les paramètres depuis la base de données
         $data = $this->getSettings();
         $isBedrockUser = game()->id() === 'mc-bedrock';
 
-        // Obtenir la liste des images téléchargées
         $uploadedImages = Storage::files('public/img');
 
         return view('skin3d::admin.index', [
@@ -91,9 +78,6 @@ class AdminController extends Controller
         ]);
     }
 
-    /**
-     * Mettre à jour les paramètres dans la base de données.
-     */
     public function update(Request $request)
     {
         $data = $this->getSettings();
@@ -106,7 +90,6 @@ class AdminController extends Controller
             'showButtons' => $request->has('showButtons'),
         ];
 
-        // Si ce n'est pas Bedrock, on peut modifier service, capes et custom_capes_api
         if (game()->id() !== 'mc-bedrock') {
             $updateData['service'] = $request->input('service');
             $updateData['activeCapes'] = $request->has('activeCapes');
@@ -118,9 +101,6 @@ class AdminController extends Controller
         return redirect()->route('skin3d.admin.index')->with('success', 'Settings updated successfully.');
     }
 
-    /**
-     * Afficher la page API du plugin.
-     */
     public function api()
     {
         $data = $this->getSettings();
