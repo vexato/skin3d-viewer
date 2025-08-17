@@ -5,14 +5,6 @@
 @section('content')
     <div class="card shadow mb-4">
         <div class="card-body">
-            <!-- BETA Alert -->
-            <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
-                <span>{{ trans('skin3d::admin.beta') }}</span>
-                <a href="https://discord.com/invite/E8wzUQybAN" class="btn btn-secondary ml-2"><i class="bi bi-discord"></i> Discord</a>
-            </div>
-
-
-
             <div class="mt-4">
                 <h5>{{ trans('skin3d::messages.how_to_use') }}</h5>
                 <ul class="list-group">

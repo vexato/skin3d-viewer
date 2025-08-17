@@ -7,9 +7,10 @@
         <div class="card-body">
             <div class="mt-4">
                 @if($isBedrockUser)
-                <div class="alert alert-warning">
-                    <i class="bi bi-exclamation-triangle-fill"></i>
-SKIND 3D BEDROCK IS IN BETA, PLEASE REPORT ANY BUGS ON DISCORD.                </div>
+            <div class="alert alert-warning d-flex justify-content-between align-items-center" role="alert">
+                <span>{{ trans('skin3d::admin.beta') }}</span>
+                <a href="https://discord.gg/Bnpw2awVRV" class="btn btn-secondary ml-2"><i class="bi bi-discord"></i> Discord</a>
+            </div>
                 @endif
                 <h4 class="mb-3 text-primary"><i class="bi bi-tools"></i> {{ trans('skin3d::messages.how_to_use') }}</h4>
 
