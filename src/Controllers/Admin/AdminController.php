@@ -72,6 +72,7 @@ class AdminController extends Controller
     {
         // Obtenir les paramètres depuis la base de données
         $data = $this->getSettings();
+        $isBedrockUser = game()->id() === 'mc-bedrock';
 
         // Obtenir la liste des images téléchargées
         $uploadedImages = Storage::files('public/img');
@@ -86,6 +87,7 @@ class AdminController extends Controller
             'showButtons' => $data->showButtons,
             'activeCapes' => $data->activeCapes,
             'customCapesApi' => $data->custom_capes_api,
+            'isBedrockUser' => $isBedrockUser,
         ]);
     }
 
@@ -94,19 +96,24 @@ class AdminController extends Controller
      */
     public function update(Request $request)
     {
-        // Récupérer les entrées du formulaire
         $data = $this->getSettings();
 
-        $data->update([
-            'service' => $request->input('service'),
+        $updateData = [
             'phrase' => $request->input('phrase'),
             'background' => $request->input('background'),
             'backgroundMode' => $request->input('backgroundMode', 'background'),
             'showPhrase' => $request->has('showPhrase'),
             'showButtons' => $request->has('showButtons'),
-            'activeCapes' => $request->has('activeCapes'),
-            'custom_capes_api' => $request->input('customCapesApi'),
-        ]);
+        ];
+
+        // Si ce n'est pas Bedrock, on peut modifier service, capes et custom_capes_api
+        if (game()->id() !== 'mc-bedrock') {
+            $updateData['service'] = $request->input('service');
+            $updateData['activeCapes'] = $request->has('activeCapes');
+            $updateData['custom_capes_api'] = $request->input('customCapesApi');
+        }
+
+        $data->update($updateData);
 
         return redirect()->route('skin3d.admin.index')->with('success', 'Settings updated successfully.');
     }

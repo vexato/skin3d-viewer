@@ -6,6 +6,11 @@
     <div class="card shadow-lg p-4 mb-5 bg-white rounded">
         <div class="card-body">
             <div class="mt-4">
+                @if($isBedrockUser)
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+SKIND 3D BEDROCK IS IN BETA, PLEASE REPORT ANY BUGS ON DISCORD.                </div>
+                @endif
                 <h4 class="mb-3 text-primary"><i class="bi bi-tools"></i> {{ trans('skin3d::messages.how_to_use') }}</h4>
 
                 <!-- Instructions -->
@@ -21,6 +26,7 @@
                     @csrf
 
                     <!-- Service Selection -->
+                    @if(!$isBedrockUser)
                     <div class="card mb-4 shadow-sm">
                         <div class="card-header bg-primary text-white">
                             <strong>{{ trans('skin3d::messages.choose_service') }}</strong>
@@ -34,12 +40,15 @@
                             </select>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Capes Options -->
+                    @if(!$isBedrockUser)
                     <div class="form-check form-switch mb-4">
                         <input type="checkbox" class="form-check-input" id="activeCapes" name="activeCapes" {{ old('activeCapes', $activeCapes) ? 'checked' : '' }} onchange="toggleCustomCapesForm()">
                         <label class="form-check-label" for="activeCapes">{{ trans('skin3d::admin.capes') }}</label>
                     </div>
+                    @endif
 
                     <!-- Custom Capes -->
                     @if($currentService === 'skin_api')

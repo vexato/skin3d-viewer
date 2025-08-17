@@ -4,7 +4,7 @@
     "description": "Plugin for Azuriom",
     "autoload": {
         "psr-4": {
-            "Azuriom\\Plugin\\Skin3d\\": "src/"
+        "Azuriom\\Plugin\\Skin3d\\": "src/"
         }
     },
     "replace": {

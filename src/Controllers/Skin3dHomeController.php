@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Schema;
 use Azuriom\Plugin\Skin3d\Models\Skin3d;
+use Azuriom\Plugin\Skin3d\Helpers\BedrockHelper;
 
 class Skin3dHomeController extends Controller
 {
@@ -15,9 +16,7 @@ class Skin3dHomeController extends Controller
      */
     public function index()
     {
-        // Vérifier si la table existe
         if (!Schema::hasTable('skin3d')) {
-            // Si la table n'existe pas, créer la table
             Schema::create('skin3d', function ($table) {
                 $table->id();
                 $table->string('service');
@@ -33,7 +32,6 @@ class Skin3dHomeController extends Controller
 
         $data = Skin3d::first();
 
-        // défaut
         if (!$data) {
             $data = Skin3d::create([
                 'service' => 'premium',
@@ -47,7 +45,6 @@ class Skin3dHomeController extends Controller
             ]);
         }
 
-        // Initialisation des données locales
         $phrase = $data->phrase ?? 'Welcome to Skin3D!';
         $service = $data->service ?? 'premium';
         $showPhrase = $data->showPhrase ?? true;
@@ -57,17 +54,19 @@ class Skin3dHomeController extends Controller
         $actiCapes = $data->activeCapes ?? true;
         $customCapesApi = $data->custom_capes_api;
 
-        // Si l'utilisateur est authentifié, personnaliser la phrase
         if (Auth::check()) {
             $phrase = str_replace(':name:', Auth::user()->name, $phrase);
             $pseudo = Auth::user()->name;
+            $user = Auth::user();
         } else {
             $pseudo = 'defaultPseudo';
+            $user = null;
         }
 
         $imageUrl = null;
-        // Logique pour le service premium
-        if ($service == 'premium' && $actiCapes) {
+        $isBedrockUser = game()->id() === 'mc-bedrock';
+        
+        if ($service == 'premium' && $actiCapes && !$isBedrockUser) {
             $apiUrl = "https://api.capes.dev/load/{$pseudo}/minecraft";
             $response = Http::get($apiUrl);
 
@@ -78,7 +77,7 @@ class Skin3dHomeController extends Controller
                 $imageUrl = null;
             }
         }
-        if ($service == 'skin_api' && $actiCapes) {
+        if ($service == 'skin_api' && $actiCapes && !$isBedrockUser) {
             $imageUrl = str_replace(':pseudo:', $pseudo, $customCapesApi);
         }
 
@@ -90,7 +89,6 @@ class Skin3dHomeController extends Controller
 
         $newBackground = transformBackgroundPath($background);
 
-        // Passer les données à la vue
         return view('skin3d::index', [
             'phrase' => $phrase,
             'service' => $service,
@@ -100,6 +98,7 @@ class Skin3dHomeController extends Controller
             'background' => $newBackground,
             'actiCapes' => $actiCapes,
             'imageUrl' => $imageUrl,
+            'isBedrockUser' => $isBedrockUser,
         ]);
     }
 

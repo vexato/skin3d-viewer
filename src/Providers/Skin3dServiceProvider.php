@@ -85,18 +85,24 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
      */
     protected function adminNavigation(): array
     {
+        $items = [
+            'skin3d.admin.index' => trans('skin3d::admin.sk3dviewer'),
+        ];
+
+        $isBedrockUser = game()->id() === 'mc-bedrock';
+        
+        if (!$isBedrockUser) {
+            $items['skin3d.admin.api'] = trans('skin3d::admin.sk3dapi');
+        }
+
         return [
             'skin3d' => [
                 'type' => 'dropdown',
                 'name' => 'skin3D viewer',
                 'icon' => 'bi bi-badge-3d',
                 'route' => 'skin3d.admin.*',
-                'items' => [
-                    'skin3d.admin.index' => trans('skin3d::admin.sk3dviewer'),
-                    'skin3d.admin.api' => trans('skin3d::admin.sk3dapi'),
-                ],
+                'items' => $items,
             ],
-
         ];
     }
 
