@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [Skin3dHomeController::class, 'index'])->name('index');
 /* Api Parametrer */
-Route::get('/3d-api/premium/{pseudo}/{width}/{height}', [Skin3dHomeController::class, 'show3DModelPremium'])->name('3d.api');
-Route::get('/3d-api/skin-api/{pseudo}/{width}/{height}', [Skin3dHomeController::class, 'show3D'])->name('3d.api');
+Route::get('/3d-api/premium/{pseudo}/{width}/{height}', [Skin3dHomeController::class, 'show3DModelPremium'])->name('3d.api.premium');
+Route::get('/3d-api/skin-api/{pseudo}/{width}/{height}', [Skin3dHomeController::class, 'show3D'])->name('3d.api.skinapi');
 
 /* Api Simple */
-Route::get('/3d-api/premium/{pseudo}', [Skin3dHomeController::class, 'show3DModelPremium'])->name('3d.simple')->defaults('width', 300)->defaults('height', 200);
-Route::get('/3d-api/skin-api/{pseudo}', [Skin3dHomeController::class, 'show3D'])->name('3d.simple')->defaults('width', 300)->defaults('height', 200);
+Route::get('/3d-api/premium/{pseudo}', [Skin3dHomeController::class, 'show3DModelPremium'])->name('3d.simple.premium')->defaults('width', 300)->defaults('height', 200);
+Route::get('/3d-api/skin-api/{pseudo}', [Skin3dHomeController::class, 'show3D'])->name('3d.simple.skinapi')->defaults('width', 300)->defaults('height', 200);
