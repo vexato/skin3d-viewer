@@ -33,3 +33,25 @@
     border: 1px solid #ccc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Admin iframe styles */
+.iframe-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.iframe-box {
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 48%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .iframe-box {
+        width: 100%;
+    }
+}

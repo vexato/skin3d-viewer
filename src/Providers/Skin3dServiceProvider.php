@@ -7,40 +7,10 @@ use Azuriom\Extensions\Plugin\BasePluginServiceProvider;
 class Skin3dServiceProvider extends BasePluginServiceProvider
 {
     /**
-     * The plugin's global HTTP middleware stack.
-     */
-    protected array $middleware = [
-        // \Azuriom\Plugin\Skin3d\Middleware\ExampleMiddleware::class,
-    ];
-
-    /**
-     * The plugin's route middleware groups.
-     */
-    protected array $middlewareGroups = [];
-
-    /**
-     * The plugin's route middleware.
-     */
-    protected array $routeMiddleware = [
-        // 'example' => \Azuriom\Plugin\Skin3d\Middleware\ExampleRouteMiddleware::class,
-    ];
-
-    /**
-     * The policy mappings for this plugin.
-     *
-     * @var array<string, string>
-     */
-    protected array $policies = [
-        // User::class => UserPolicy::class,
-    ];
-
-    /**
      * Register any plugin services.
      */
     public function register(): void
     {
-        // $this->registerMiddleware();
-
         //
     }
 
@@ -49,39 +19,26 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
      */
     public function boot(): void
     {
-        // $this->registerPolicies();
-
         $this->loadViews();
-
         $this->loadTranslations();
-
         $this->loadMigrations();
-
         $this->registerRouteDescriptions();
-
         $this->registerAdminNavigation();
-
         $this->registerUserNavigation();
-
-        //
     }
 
     /**
-     * Returns the routes that should be able to be added to the navbar.
-     *
-     * @return array<string, string>
+     * Routes that can be added to the navbar.
      */
     protected function routeDescriptions(): array
     {
         return [
-            'skin3d.index' => "Skin3d viewer",
+            'skin3d.index' => 'Skin3d viewer',
         ];
     }
 
     /**
-     * Return the admin navigations routes to register in the dashboard.
-     *
-     * @return array<string, array<string, string>>
+     * Admin navigation routes.
      */
     protected function adminNavigation(): array
     {
@@ -89,9 +46,7 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
             'skin3d.admin.index' => trans('skin3d::admin.sk3dviewer'),
         ];
 
-        $isBedrockUser = game()->id() === 'mc-bedrock';
-        
-        if (!$isBedrockUser) {
+        if (game()->id() !== 'mc-bedrock') {
             $items['skin3d.admin.api'] = trans('skin3d::admin.sk3dapi');
         }
 
@@ -107,9 +62,7 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
     }
 
     /**
-     * Return the user navigations routes to register in the user menu.
-     *
-     * @return array<string, array<string, string>>
+     * User navigation routes.
      */
     protected function userNavigation(): array
     {

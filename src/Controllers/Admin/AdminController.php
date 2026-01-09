@@ -3,64 +3,33 @@
 namespace Azuriom\Plugin\Skin3d\Controllers\Admin;
 
 use Azuriom\Http\Controllers\Controller;
+use Azuriom\Plugin\Skin3d\Traits\SettingsTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Schema\Blueprint;
-use Azuriom\Plugin\Skin3d\Models\Skin3d;
 
 class AdminController extends Controller
 {
-    private function ensureTableStructure()
+    use SettingsTrait;
+
+    /**
+     * Ensure new columns exist (for plugin updates).
+     */
+    private function ensureColumnsExist(): void
     {
-        if (!Schema::hasTable('skin3d')) {
-            Schema::create('skin3d', function (Blueprint $table) {
-                $table->id();
-                $table->string('service');
-                $table->string('phrase')->nullable();
-                $table->string('background')->nullable();
-                $table->string('backgroundMode')->default('background');
-                $table->boolean('showPhrase')->default(true);
-                $table->boolean('showButtons')->default(true);
-                $table->boolean('activeCapes')->default(true);
-                $table->string('custom_capes_api')->nullable();
-                $table->timestamps();
-            });
-        } else {
+        if (Schema::hasTable('skin3d') && !Schema::hasColumn('skin3d', 'custom_capes_api')) {
             Schema::table('skin3d', function (Blueprint $table) {
-                if (!Schema::hasColumn('skin3d', 'custom_capes_api')) {
-                    $table->string('custom_capes_api')->nullable();
-                }
+                $table->string('custom_capes_api')->nullable();
             });
         }
     }
-    private function getSettings()
-    {
-        $this->ensureTableStructure();
-
-        $service = Skin3d::first();
-
-        if (!$service) {
-            $service = Skin3d::create([
-                'service' => 'premium',
-                'phrase' => '',
-                'background' => '',
-                'backgroundMode' => 'background',
-                'showPhrase' => true,
-                'showButtons' => true,
-                'activeCapes' => true,
-                'custom_capes_api' => null,
-            ]);
-        }
-
-        return $service;
-    }
-
 
     public function index()
     {
+        $this->ensureColumnsExist();
         $data = $this->getSettings();
-        $isBedrockUser = game()->id() === 'mc-bedrock';
+        $isBedrockUser = $this->isBedrockUser();
 
         $uploadedImages = Storage::files('public/img');
 
@@ -90,13 +59,14 @@ class AdminController extends Controller
             'showButtons' => $request->has('showButtons'),
         ];
 
-        if (game()->id() !== 'mc-bedrock') {
+        if (!$this->isBedrockUser()) {
             $updateData['service'] = $request->input('service');
             $updateData['activeCapes'] = $request->has('activeCapes');
             $updateData['custom_capes_api'] = $request->input('customCapesApi');
         }
 
         $data->update($updateData);
+        $this->clearSettingsCache();
 
         return redirect()->route('skin3d.admin.index')->with('success', 'Settings updated successfully.');
     }

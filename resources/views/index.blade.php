@@ -153,6 +153,7 @@
                     };
                 }
 
+                @if($background)
                 if ("{{ $bgmode }}" === 'background') {
                     let img = new Image();
                     img.src = "{{ url($background) }}";
@@ -161,6 +162,7 @@
                 } else {
                     skinViewer.loadPanorama("{{ url($background) }}");
                 }
+                @endif
 
                 const pauseButton = document.getElementById("pauseButton");
                 if (pauseButton) {
