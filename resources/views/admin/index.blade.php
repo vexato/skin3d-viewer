@@ -45,10 +45,12 @@
                         <input type="checkbox" class="form-check-input" id="showPhrase" name="showPhrase" {{ old('showPhrase', $showPhrase) ? 'checked' : '' }}>
                         <label class="form-check-label" for="showPhrase">{{ trans('skin3d::messages.show_phrase') }}</label>
                     </div>
-                    <div class="form-check form-switch mb-4">
-                        <input type="checkbox" class="form-check-input" id="showButtons" name="showButtons" {{ old('showButtons', $showButtons) ? 'checked' : '' }}>
-                        <label class="form-check-label" for="showButtons">{{ trans('skin3d::messages.show_buttons') }}</label>
-                    </div>
+                    @if($gameType !== 'hytale')
+                        <div class="form-check form-switch mb-4">
+                            <input type="checkbox" class="form-check-input" id="showButtons" name="showButtons" {{ old('showButtons', $showButtons) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="showButtons">{{ trans('skin3d::messages.show_buttons') }}</label>
+                        </div>
+                    @endif
 
                     <!-- Background Selection -->
                     <div class="card mb-4 shadow-sm">
