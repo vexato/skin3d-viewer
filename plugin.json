@@ -1,7 +1,7 @@
 {
     "id": "skin3d",
     "name": "Skin3D Viewer",
-    "description": "A 3D skin Minecraft viewer And 3D skin API",
+    "description": "A 3D skin viewer And 3D skin API",
     "version": "1.5.2",
     "url": "https:\/\/market.azuriom.com\/resources\/148",
     "authors": [
@@ -14,6 +14,5 @@
     ],
     "dependencies": {
         "skin-api?": "^1.0.4"
-    },
-    "apiId": 148
+    }
 }

@@ -24,5 +24,8 @@ return [
     'show_buttons' => 'Afficher les boutons',
     'choose_background' => 'Choisir un fond',
     'no_background' => 'Pas de fond (transparent)',
-    'choose_bg_mod' => 'Choisir le mode du fond'
+    'choose_bg_mod' => 'Choisir le mode du fond',
+    'loading_model' => 'Chargement du modèle 3D...',
+    'hytale_no_skin' => 'Aucun skin Hytale trouvé',
+    'hytale_no_skin_desc' => 'Impossible de charger votre personnage Hytale. Veuillez vérifier que votre nom d\'utilisateur est lié à Hytale.',
 ];

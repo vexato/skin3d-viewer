@@ -18,6 +18,7 @@ class Skin3dHomeController extends Controller
     {
         $data = $this->getSettings();
         $isBedrockUser = $this->isBedrockUser();
+        $isHytaleGame = $this->isHytaleGame();
 
         $phrase = $data->phrase ?? 'Welcome to Skin3D!';
         $service = $data->service ?? 'premium';
@@ -36,22 +37,52 @@ class Skin3dHomeController extends Controller
         }
 
         $imageUrl = null;
+        $hytaleGlbUrl = null;
+        $hytaleSkinData = null;
         
-        if ($service == 'premium' && $actiCapes && !$isBedrockUser) {
-            $apiUrl = "https://api.capes.dev/load/{$pseudo}/minecraft";
-            $response = Http::get($apiUrl);
-
+        // Hytale specific logic
+        if ($isHytaleGame && Auth::check()) {
+            $profileApiUrl = "https://crafthead.net/hytale/profile/{$pseudo}";
+            $response = Http::get($profileApiUrl);
+            
             if ($response->successful()) {
-                $apiData = $response->json();
-                $imageUrl = $apiData['imageUrl'] ?? null;
+                $profileData = $response->json();
+                if (isset($profileData['skin'])) {
+                    $hytaleSkinData = $profileData['skin'];
+                    // Encode the skin recipe to base64url
+                    $skinJson = json_encode($profileData['skin']);
+                    $base64Recipe = rtrim(strtr(base64_encode($skinJson), '+/', '-_'), '=');
+                    $hytaleGlbUrl = "https://hytlskins.com/skin/recipe?recipe={$base64Recipe}";
+                }
             }
         }
         
-        if ($service == 'skin_api' && $actiCapes && !$isBedrockUser) {
-            $imageUrl = str_replace(':pseudo:', $pseudo, $customCapesApi);
+        // Minecraft cape logic (only for non-Hytale)
+        if (!$isHytaleGame) {
+            if ($service == 'premium' && $actiCapes && !$isBedrockUser) {
+                $apiUrl = "https://api.capes.dev/load/{$pseudo}/minecraft";
+                $response = Http::get($apiUrl);
+
+                if ($response->successful()) {
+                    $apiData = $response->json();
+                    $imageUrl = $apiData['imageUrl'] ?? null;
+                }
+            }
+            
+            if ($service == 'skin_api' && $actiCapes && !$isBedrockUser) {
+                $imageUrl = str_replace(':pseudo:', $pseudo, $customCapesApi);
+            }
         }
 
         $newBackground = $this->transformBackgroundPath($background);
+
+        // Determine game type for view selection
+        $gameType = 'java'; // default
+        if ($isHytaleGame) {
+            $gameType = 'hytale';
+        } elseif ($isBedrockUser) {
+            $gameType = 'bedrock';
+        }
 
         return view('skin3d::index', [
             'phrase' => $phrase,
@@ -62,7 +93,8 @@ class Skin3dHomeController extends Controller
             'background' => $newBackground,
             'actiCapes' => $actiCapes,
             'imageUrl' => $imageUrl,
-            'isBedrockUser' => $isBedrockUser,
+            'gameType' => $gameType,
+            'hytaleGlbUrl' => $hytaleGlbUrl,
         ]);
     }
 

@@ -46,7 +46,7 @@ class Skin3dServiceProvider extends BasePluginServiceProvider
             'skin3d.admin.index' => trans('skin3d::admin.sk3dviewer'),
         ];
 
-        if (game()->id() !== 'mc-bedrock') {
+        if (game()->id() !== 'mc-bedrock' && game()->id() !== 'hytale') {
             $items['skin3d.admin.api'] = trans('skin3d::admin.sk3dapi');
         }
 

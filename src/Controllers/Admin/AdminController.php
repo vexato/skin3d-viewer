@@ -30,6 +30,15 @@ class AdminController extends Controller
         $this->ensureColumnsExist();
         $data = $this->getSettings();
         $isBedrockUser = $this->isBedrockUser();
+        $isHytaleGame = $this->isHytaleGame();
+
+        // Determine game type for view selection
+        $gameType = 'java'; // default
+        if ($isHytaleGame) {
+            $gameType = 'hytale';
+        } elseif ($isBedrockUser) {
+            $gameType = 'bedrock';
+        }
 
         $uploadedImages = Storage::files('public/img');
 
@@ -43,13 +52,15 @@ class AdminController extends Controller
             'showButtons' => $data->showButtons,
             'activeCapes' => $data->activeCapes,
             'customCapesApi' => $data->custom_capes_api,
-            'isBedrockUser' => $isBedrockUser,
+            'gameType' => $gameType,
         ]);
     }
 
     public function update(Request $request)
     {
         $data = $this->getSettings();
+        $isBedrockUser = $this->isBedrockUser();
+        $isHytaleGame = $this->isHytaleGame();
 
         $updateData = [
             'phrase' => $request->input('phrase'),
@@ -59,8 +70,9 @@ class AdminController extends Controller
             'showButtons' => $request->has('showButtons'),
         ];
 
-        if (!$this->isBedrockUser()) {
-            $updateData['service'] = $request->input('service');
+        // Only update service and capes for Minecraft Java (not Bedrock, not Hytale)
+        if (!$isBedrockUser && !$isHytaleGame) {
+            $updateData['service'] = $request->input('service', 'premium');
             $updateData['activeCapes'] = $request->has('activeCapes');
             $updateData['custom_capes_api'] = $request->input('customCapesApi');
         }

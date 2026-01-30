@@ -25,4 +25,8 @@ return [
     'choose_background' => 'Choose a background',
     'no_background' => 'No background (transparent)',
     'choose_bg_mod' => 'Choose background mode',
+    'loading_model' => 'Loading 3D model...',
+    'hytale_no_skin' => 'No Hytale skin found',
+    'hytale_no_skin_desc' => 'Unable to load your Hytale character. Please verify your username is linked to Hytale.',
 ];
+

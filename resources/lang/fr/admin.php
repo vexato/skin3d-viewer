@@ -18,4 +18,8 @@ return [
     'sk3dviewer'  => 'skin3D viewer',
     'settingsURL' => 'Paramètres de l\'URL',
     'code_api_exemple_para' => 'Exemple de code d\'utilisation de l\'API avec des paramètres',
+    
+    // Hytale specific
+    'hytale_mode' => 'Mode Hytale Actif',
+    'hytale_info' => 'Hytale utilise des modèles 3D GLB. La sélection du service et les options de cape ne sont pas applicables pour ce jeu.',
 ];

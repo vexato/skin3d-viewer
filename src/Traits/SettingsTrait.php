@@ -49,6 +49,14 @@ trait SettingsTrait
     }
 
     /**
+     * Check if current game is Hytale.
+     */
+    protected function isHytaleGame(): bool
+    {
+        return game()->id() === 'hytale';
+    }
+
+    /**
      * Transform background path from public/ to storage/.
      */
     protected function transformBackgroundPath(?string $background): ?string
